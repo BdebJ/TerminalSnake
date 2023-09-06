@@ -8,8 +8,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Add the executable
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.h")
-add_executable (TerminalSnake "src/main.cpp" ${SOURCES})
+add_executable (TerminalSnake ${SOURCES})
 
-# Link PDCurses library and include directories
-target_link_libraries(TerminalSnake PRIVATE ${CMAKE_SOURCE_DIR}/lib/PDCurses/wincon/pdcurses.lib)
-target_include_directories(TerminalSnake PRIVATE ${CMAKE_SOURCE_DIR}/lib/PDCurses)
+# Check the operating system and link PDCurses library if on Windows
+if (WIN32)
+    target_link_libraries(TerminalSnake PRIVATE ${CMAKE_SOURCE_DIR}/lib/PDCurses/wincon/pdcurses.lib)
+    target_include_directories(TerminalSnake PRIVATE ${CMAKE_SOURCE_DIR}/lib/PDCurses)
+# On Linux, use Curses
+elseif (UNIX)
+    find_package(Curses REQUIRED)
+    include_directories(${CURSES_INCLUDE_DIR})
+    target_link_libraries(TerminalSnake PRIVATE ${CURSES_LIBRARY})
+endif()

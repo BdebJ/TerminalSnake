@@ -18,11 +18,11 @@
             }
         },
         {
-            "name": "x64-debug",
-            "displayName": "x64 Debug",
+            "name": "x86-debug",
+            "displayName": "x86 Debug",
             "inherits": "windows-base",
             "architecture": {
-                "value": "x64",
+                "value": "x86",
                 "strategy": "external"
             },
             "cacheVariables": {
@@ -30,11 +30,11 @@
             }
         },
         {
-            "name": "x64-release",
-            "displayName": "x64 Release",
+            "name": "x86-release",
+            "displayName": "x86 Release",
             "inherits": "windows-base",
             "architecture": {
-                "value": "x64",
+                "value": "x86",
                 "strategy": "external"
             },
             "cacheVariables": {
@@ -62,7 +62,7 @@
             "displayName": "Linux Debug",
             "inherits": "linux-base",
             "architecture": {
-                "value": "x64",
+                "value": "x86",
                 "strategy": "external"
             },
             "cacheVariables": {
